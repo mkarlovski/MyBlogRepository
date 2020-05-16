@@ -14,7 +14,11 @@
 
   <ItemGroup>
     <Folder Include="Models\" />
-    <Folder Include="Views\Shared\" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\MyBlog.Service\MyBlog.Service.csproj" />
   </ItemGroup>
 
 </Project>

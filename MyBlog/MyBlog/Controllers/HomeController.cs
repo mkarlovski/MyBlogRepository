@@ -4,15 +4,23 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using MyBlog.Service.Interfaces;
 //using MyBlog.Models;
 
 namespace MyBlog.Controllers
 {
     public class HomeController : Controller
     {
+        public IBlogService BlogService { get; set; }
+
+        public HomeController(IBlogService blogService)
+        {
+            BlogService = blogService;
+        }
         public IActionResult Index()
         {
-            return View();
+            var blogs = BlogService.GetAll();
+            return View(blogs);
         }
 
         //public IActionResult Privacy()
