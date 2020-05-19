@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using MyBlog.Models;
 using MyBlog.Service.Interfaces;
 //using MyBlog.Models;
 
@@ -21,6 +22,11 @@ namespace MyBlog.Controllers
         {
             var blogs = BlogService.GetAll();
             return View(blogs);
+        }
+        public IActionResult ViewFullBlog(int id)
+        {
+            var blog = BlogService.GetById(id);
+            return View(blog);
         }
 
         //public IActionResult Privacy()

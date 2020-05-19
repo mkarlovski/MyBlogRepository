@@ -4,18 +4,15 @@
     padding:0;
 }
 
-#container{
-    width:100%;
+#logo-container {
+    width: 100%;
     height: 60px;
-    background-color:aqua;
-    display:flex;
-    /*flex-direction:row;*/
-    /*position:relative;*/
-    justify-content:space-between;
-    /*vertical-align:central;*/
-    /*align-content:center;*/
-    text-align:center;
-    padding:15px;
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    padding: 15px;
+    border-bottom:1px solid black;
 }
 
 #header-logo{
@@ -30,6 +27,32 @@
     border:1px solid black;
     padding:5px;
     text-align:center;
-    margin-right:10px;
-    
+    margin-right:10px;   
+}
+
+#container-left {
+    width: 80%;
+    background-color: yellow;
+    height: 800px;
+    /* display: inline-block; */
+    float: left;
+    margin-top: -5px;
+}
+
+#container-right {
+    width: 20%;
+    background-color: green;
+    height: 800px;
+    /* display: inline-block; */
+    float: right;
+    margin-top: -5px;
+}
+
+.card1{
+    margin-top:20px;
+    margin-left:20px; 
+    /*width:90%;*/
+    display:flex;
+    flex-wrap:wrap;
+    border-bottom:1px dashed black; 
 }

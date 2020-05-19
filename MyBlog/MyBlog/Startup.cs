@@ -38,7 +38,8 @@ namespace MyBlog
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddSingleton<IBlogService,BlogService>();
-            services.AddSingleton<IBlogRepository,BlogRepository>();
+            //services.AddSingleton<IBlogRepository,BlogRepository>();
+            services.AddSingleton<IBlogRepository, BlogSQLRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
