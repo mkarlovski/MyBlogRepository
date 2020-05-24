@@ -1,5 +1,18 @@
 ﻿@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers;
+@model MyBlog.Models.Blog;
 @{
     Layout = "_Layout";
     ViewBag.Title = "FullBlog";
 }
+
+<div id="fullView_container" style="width:90%; margin:0 auto;">
+    <div class="info-top">
+        <h6 style="background-color:green;">
+            <a asp-controller="Home" asp-action="Index" style="background-color:#911d9c; color:white; padding:5px;">@Model.Section.ToUpper()</a>
+        </h6>
+        <h3>@Model.Title</h3>
+        <h6>@Model.BlogNote</h6>
+    </div>
+    <img src=@Model.ImageURL style="width:100%;">
+    <p style="margin-top:30px;">@Model.FullDescription</p>
+</div>

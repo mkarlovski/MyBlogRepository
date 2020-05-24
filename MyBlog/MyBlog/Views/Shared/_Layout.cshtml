@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <link href="~/css/app.css" rel="stylesheet" type="text/css" />
-    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css"  rel="stylesheet"/>
+    <link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -26,6 +27,12 @@
                     <li class="nav-item ">
                         <a class="nav-link" asp-controller="Home" asp-action="Index">Home <span class="sr-only">(current)</span></a>
                     </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" asp-controller="Home" asp-action="Index">Gadgets <span class="sr-only">(current)</span></a>
+                    </li>    @*da se dosredi*@
+                    <li class="nav-item ">
+                        <a class="nav-link" asp-controller="Home" asp-action="Index">How-To<span class="sr-only">(current)</span></a>
+                    </li>    @*da se dosredi*@
                     <li class="nav-item">
                         <a class="nav-link" asp-controller="Info" asp-action="AboutUs">About Us</a>
                     </li>
