@@ -25,22 +25,22 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item ">
-                        <a class="nav-link" asp-controller="Home" asp-action="Index">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" asp-controller="Home" asp-action="Index" asp-route-id="">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" asp-controller="Home" asp-action="Index">Gadgets <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" asp-controller="Home" asp-action="Index" asp-route-id="Gadgets">Gadgets<span class="sr-only">(current)</span></a>
                     </li>    @*da se dosredi*@
                     <li class="nav-item ">
-                        <a class="nav-link" asp-controller="Home" asp-action="Index">How-To<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" asp-controller="Home" asp-action="Index" asp-route-id="How-To">How-To<span class="sr-only">(current)</span></a>
                     </li>    @*da se dosredi*@
+                    @*<li class="nav-item">
+                        <a class="nav-link" asp-controller="Info" asp-action="AboutUs">About Us</a>   
+                    </li>*@
                     <li class="nav-item">
-                        <a class="nav-link" asp-controller="Info" asp-action="AboutUs">About Us</a>
+                        <a class="nav-link" asp-controller="Info" asp-action="ContactMe">Contact Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-controller="Info" asp-action="ContactUs">Contact Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Info" asp-action="ContactUs">Create Post</a>
+                        <a class="nav-link" asp-controller="Info" asp-action="ContactMe">Create Post</a>
                     </li>
 
                 </ul>
