@@ -9,5 +9,6 @@ namespace MyBlog.Service.Interfaces
     {
         List<Blog> GetAll();
         Blog GetById(int id);
+        List<Blog> GetBySection(string section);
     }
 }

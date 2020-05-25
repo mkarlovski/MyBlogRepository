@@ -22,5 +22,10 @@ namespace MyBlog.Service
         {
             return BlogRepository.GetById(id);
         }
+
+        public List<Blog> GetBySection(string section)
+        {
+            return BlogRepository.GetBySection(section);
+        }
     }
 }

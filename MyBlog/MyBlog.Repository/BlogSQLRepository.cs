@@ -60,5 +60,39 @@ namespace MyBlog.Repository
                 return result;
             }  
         }
+
+        public List<Blog> GetBySection(string section)
+        {
+            var result = new List<Blog>();
+            using (var cnn = new SqlConnection("Data Source=.\\SQLEXPRESS; Initial Catalog=MyBlogDB; Integrated Security=true"))
+            {
+                cnn.Open();
+                var query = "select * from blogs";
+                if (!String.IsNullOrEmpty(section))
+                {
+                    query = $"{query} where section=@section";
+                }
+                var cmd = new SqlCommand(query, cnn);
+
+                if (!String.IsNullOrEmpty(section))
+                {
+                    cmd.Parameters.AddWithValue("@section", section);
+                }
+                var reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    var blog = new Blog();
+                    blog.BlogID = reader.GetInt32(0);
+                    blog.Section = reader.GetString(1);
+                    blog.ImageURL = reader.GetString(2);
+                    blog.Title = reader.GetString(3);
+                    blog.BlogNote = reader.GetString(4);
+                    blog.FullDescription = reader.GetString(5);
+
+                    result.Add(blog);
+                }
+            }
+            return result;
+        }
     }
 }

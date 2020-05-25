@@ -47,5 +47,10 @@ namespace MyBlog.Repository
         {
             return Blogs.FirstOrDefault(x=>x.BlogID==id);
         }
+
+        public List<Blog> GetBySection(string section)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

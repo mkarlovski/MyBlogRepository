@@ -18,9 +18,10 @@ namespace MyBlog.Controllers
         {
             BlogService = blogService;
         }
-        public IActionResult Index()
+        public IActionResult Index(string section)
         {
-            var blogs = BlogService.GetAll();
+            var blogs = BlogService.GetBySection(section);
+            //var blogs = BlogService.GetAll();
             return View(blogs);
         }
         public IActionResult ViewFullBlog(int id)
