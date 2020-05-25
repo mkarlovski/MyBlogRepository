@@ -9,7 +9,23 @@ namespace MyBlog.Repository
 {
     public class BlogSQLRepository : IBlogRepository
     {
-        
+        public void Add(Blog blog)
+        {
+            using (var cnn = new SqlConnection("Data Source=.\\SQLEXPRESS; Initial Catalog=MyBlogDB; Integrated Security=true"))
+            {
+                cnn.Open();
+                var query = @"insert into Blogs(Section, ImageURL,Title,BlogNote,FullDescription,DateCreated,Clicked)
+                            values(@Section,@ImageURL,@Title,@BlogNote,@FullDescription,getdate(),1)";
+                var cmd = new SqlCommand(query, cnn);
+                cmd.Parameters.AddWithValue("@Section",blog.Section);
+                cmd.Parameters.AddWithValue("@ImageURL",blog.ImageURL);
+                cmd.Parameters.AddWithValue("@Title",blog.Title);
+                cmd.Parameters.AddWithValue("@BlogNote",blog.BlogNote);
+                cmd.Parameters.AddWithValue("@FullDescription",blog.FullDescription);
+
+                cmd.ExecuteNonQuery();
+            }
+        }
         public List<Blog> GetAll()
         {
             var result = new List<Blog>();
@@ -29,6 +45,8 @@ namespace MyBlog.Repository
                     blog.Title = reader.GetString(3);
                     blog.BlogNote = reader.GetString(4);
                     blog.FullDescription = reader.GetString(5);
+                    blog.DateCreated = reader.GetDateTime(6);
+                    blog.Clicked = reader.GetInt32(7);
 
                     result.Add(blog);
                 }
@@ -56,6 +74,8 @@ namespace MyBlog.Repository
                     result.Title = reader.GetString(3);
                     result.BlogNote = reader.GetString(4);
                     result.FullDescription = reader.GetString(5);
+                    result.DateCreated = reader.GetDateTime(6);
+                    result.Clicked = reader.GetInt32(7);
                 }
                 return result;
             }  
@@ -88,6 +108,8 @@ namespace MyBlog.Repository
                     blog.Title = reader.GetString(3);
                     blog.BlogNote = reader.GetString(4);
                     blog.FullDescription = reader.GetString(5);
+                    blog.DateCreated = reader.GetDateTime(6);
+                    blog.Clicked = reader.GetInt32(7);
 
                     result.Add(blog);
                 }

@@ -16,6 +16,8 @@ namespace MyBlog.Models
         public string BlogNote { get; set; }
         [Required]
         public string FullDescription { get; set; }
+        public DateTime DateCreated { get; set; }
+        public int Clicked { get; set; }
 
     }
 }

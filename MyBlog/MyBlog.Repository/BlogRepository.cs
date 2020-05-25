@@ -52,5 +52,10 @@ namespace MyBlog.Repository
         {
             throw new NotImplementedException();
         }
+
+        public void Add(Blog blog)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

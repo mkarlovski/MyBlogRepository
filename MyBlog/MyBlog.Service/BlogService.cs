@@ -27,5 +27,10 @@ namespace MyBlog.Service
         {
             return BlogRepository.GetBySection(section);
         }
+
+        public void CreateBlog(Blog blog)
+        {
+            BlogRepository.Add(blog);
+        }
     }
 }

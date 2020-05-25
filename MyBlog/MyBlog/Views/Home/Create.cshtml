@@ -1,0 +1,44 @@
+﻿@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
+@model MyBlog.Models.Blog;
+@{
+    Layout = "_Layout";
+    ViewBag.Title = "CreatePost";
+}
+@using MyBlog.Models
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-controller="Home" asp-action="Create" method="post">
+            <div class="form-group">
+                <label asp-for="Title" class="control-label">Blog Title</label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageURL" class="control-label">Image URL</label>
+                <input asp-for="ImageURL" class="form-control" />
+                <span asp-validation-for="ImageURL" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label" asp-for="Section">Blog Section</label>
+                <select asp-for="Section" asp-items="Html.GetEnumSelectList<EnumSection>()" class="form-control" required="required">
+                    <option selected="selected" value="" disabled>--Please Select--</option>
+                </select>
+                <span asp-validation-for="Section" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BlogNote" class="control-label">Short Note</label>
+                <input asp-for="BlogNote" class="form-control" />
+                <span asp-validation-for="BlogNote" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FullDescription" class="control-label">Write Blog</label>
+                <textarea asp-for="FullDescription" class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-dark" />
+            </div>
+
+        </form>
+    </div>   
+</div>
