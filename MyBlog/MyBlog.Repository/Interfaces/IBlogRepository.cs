@@ -13,5 +13,6 @@ namespace MyBlog.Repository.Interfaces
         List<Blog> GetBySection(string section);
         void Add(Blog blog);
         void Delete(int id);
+        void Update();
     }
 }

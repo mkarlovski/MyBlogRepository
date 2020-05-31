@@ -13,5 +13,6 @@ namespace MyBlog.Service.Interfaces
         List<Blog> GetBySection(string section);
         void CreateBlog(Blog blog);
         void Delete(int id);
+        void UpdateBlog(Blog blog);
     }
 }

@@ -68,6 +68,20 @@ namespace MyBlog.Controllers
             return View(blog);
         }
 
+        [HttpPost]
+        public IActionResult Modify(Blog blog)
+        {
+            if (ModelState.IsValid)
+            {
+                BlogService.UpdateBlog(blog);
+                return RedirectToAction("ModifyOverview");
+            }
+            else
+            {
+                return View(blog);
+            }
+        }
+
        
     }
 }

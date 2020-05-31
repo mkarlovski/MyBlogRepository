@@ -39,5 +39,10 @@ namespace MyBlog.Service
         {
             BlogRepository.Delete(id);
         }
+
+        public void UpdateBlog(Blog blog)
+        {
+            BlogRepository.Update();
+        }
     }
 }

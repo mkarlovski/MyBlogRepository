@@ -40,5 +40,10 @@ namespace MyBlog.Repository
         {
             throw new NotImplementedException();
         }
+
+        public void Update()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
