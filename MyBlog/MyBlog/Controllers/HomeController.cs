@@ -4,8 +4,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using MyBlog.Models;
+//using MyBlog.Models;
 using MyBlog.Service.Interfaces;
+using MyBlog.Data;
 //using MyBlog.Models;
 
 namespace MyBlog.Controllers
@@ -36,6 +37,7 @@ namespace MyBlog.Controllers
             return View(blog);
         }
 
+        [HttpPost]
         public IActionResult Create(Blog blog)
         {
             if (ModelState.IsValid)
@@ -47,6 +49,23 @@ namespace MyBlog.Controllers
             {
                 return View(blog);
             }
+        }
+
+        public IActionResult ModifyOverview()
+        {
+            var blogs = BlogService.GetAll();
+            return View(blogs);
+        }
+        public IActionResult Delete(int id)
+        {
+            BlogService.Delete(id);
+            return RedirectToAction("ModifyOverview");
+        }
+
+        public IActionResult Modify(int id)
+        {
+            var blog = BlogService.GetById(id);
+            return View(blog);
         }
 
        

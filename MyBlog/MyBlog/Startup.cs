@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MyBlog.Repository;
 using MyBlog.Repository.Interfaces;
 using MyBlog.Service;
 using MyBlog.Service.Interfaces;
+using MyBlog.Data;
+
 
 namespace MyBlog
 {
@@ -35,11 +33,13 @@ namespace MyBlog
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            services.AddDbContext<MyBlogDBContext>(options => options.UseSqlServer("Data Source=.\\SQLEXPRESS; Initial Catalog=MyBlogDB; Integrated Security=true"));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddSingleton<IBlogService,BlogService>();
+            services.AddTransient<IBlogService,BlogService>();
             //services.AddSingleton<IBlogRepository,BlogRepository>();
-            services.AddSingleton<IBlogRepository, BlogSQLRepository>();
+            //services.AddTransient<IBlogRepository, BlogSQLRepository>();
+            services.AddTransient<IBlogRepository, BlogRepositoryEF>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

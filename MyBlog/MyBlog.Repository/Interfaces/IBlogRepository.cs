@@ -1,7 +1,8 @@
-﻿using MyBlog.Models;
+﻿//using MyBlog.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using MyBlog.Data;
 
 namespace MyBlog.Repository.Interfaces
 {
@@ -11,5 +12,6 @@ namespace MyBlog.Repository.Interfaces
         Blog GetById(int id);
         List<Blog> GetBySection(string section);
         void Add(Blog blog);
+        void Delete(int id);
     }
 }

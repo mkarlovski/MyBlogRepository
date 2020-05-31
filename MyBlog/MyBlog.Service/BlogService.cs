@@ -1,8 +1,10 @@
-﻿using MyBlog.Models;
+﻿//using MyBlog.Models;
 using MyBlog.Repository.Interfaces;
 using MyBlog.Service.Interfaces;
 using System;
 using System.Collections.Generic;
+using MyBlog.Data;
+
 
 namespace MyBlog.Service
 {
@@ -31,6 +33,11 @@ namespace MyBlog.Service
         public void CreateBlog(Blog blog)
         {
             BlogRepository.Add(blog);
+        }
+
+        public void Delete(int id)
+        {
+            BlogRepository.Delete(id);
         }
     }
 }
