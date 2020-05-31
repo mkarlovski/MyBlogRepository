@@ -42,7 +42,7 @@ namespace MyBlog.Service
 
         public void UpdateBlog(Blog blog)
         {
-            BlogRepository.Update();
+            BlogRepository.Update(blog);
         }
     }
 }

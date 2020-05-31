@@ -3,13 +3,14 @@
 using MyBlog.Repository.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace MyBlog.Repository
 {
     public class BlogRepositoryEF : IBlogRepository
     {
-        private MyBlogDBContext Context { get; set; }
+        public MyBlogDBContext Context { get; set; }
 
         public BlogRepositoryEF(MyBlogDBContext context)
         {
@@ -18,32 +19,51 @@ namespace MyBlog.Repository
 
         public void Add(Blog blog)
         {
-            throw new NotImplementedException();
+            blog.DateCreated = DateTime.Now;
+            Context.BlogsDB.Add(blog);
+            Context.SaveChanges();
         }
 
         public List<Blog> GetAll()
         {
-            throw new NotImplementedException();
-        }
+            return Context.BlogsDB.ToList()
+;        }
 
         public Blog GetById(int id)
         {
-            throw new NotImplementedException();
+            return Context.BlogsDB.FirstOrDefault(x => x.BlogID == id);
         }
 
         public List<Blog> GetBySection(string section)
         {
-            throw new NotImplementedException();
+            var blogs = Context.BlogsDB.AsQueryable();
+            if (!string.IsNullOrEmpty(section))
+            {
+                blogs = blogs.Where(x => x.Title.Contains(section));
+                
+            }
+            return blogs.ToList();
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var blog = new Blog()
+            {
+                BlogID = id
+            };
+            Context.BlogsDB.Remove(blog);
+            Context.SaveChanges();
+
         }
 
-        public void Update()
+        
+
+        public void Update(Blog blog)
         {
-            throw new NotImplementedException();
+            Context.BlogsDB.Update(blog);
+            Context.SaveChanges();
+            
+            
         }
     }
 }
