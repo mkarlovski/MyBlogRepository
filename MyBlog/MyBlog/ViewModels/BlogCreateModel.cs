@@ -1,0 +1,20 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace MyBlog.ViewModels
+{
+    public class BlogCreateModel
+    {
+        public string ImageURL { get; set; }
+
+        public string Section { get; set; }
+
+        public string Title { get; set; }
+
+        public string BlogNote { get; set; }
+
+        public string FullDescription { get; set; }
+    }
+}

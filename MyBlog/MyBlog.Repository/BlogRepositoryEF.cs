@@ -39,7 +39,7 @@ namespace MyBlog.Repository
             var blogs = Context.BlogsDB.AsQueryable();
             if (!string.IsNullOrEmpty(section))
             {
-                blogs = blogs.Where(x => x.Title.Contains(section));
+                blogs = blogs.Where(x => x.Section.Contains(section));
                 
             }
             return blogs.ToList();

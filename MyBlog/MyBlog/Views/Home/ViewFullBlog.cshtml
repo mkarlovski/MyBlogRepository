@@ -1,6 +1,7 @@
 ﻿@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers;
-@*@model MyBlog.Models.Blog;*@
-@model MyBlog.Data.Blog;
+@*@model MyBlog.Models.Blog; *@
+@*@model MyBlog.Data.Blog;*@
+@model MyBlog.ViewModels.BlogDetailsModel;
 @{
     Layout = "_Layout";
     ViewBag.Title = "FullBlog";
@@ -9,7 +10,7 @@
 <div id="fullView_container" style="width:90%; margin:0 auto;">
     <div class="info-top">
         <h6 style="background-color:green;">
-            <a asp-controller="Home" asp-action="Index" style="background-color:#911d9c; color:white; padding:5px;">@Model.Section.ToUpper()</a>
+            <a asp-controller="Home" asp-action="Index" style="background-color:#911d9c; color:white; padding:5px;">@Model.Section.ToUpper()  Created:@Model.DaysCreated</a>
         </h6>
         <h2 style="font-weight:bold;">@Model.Title</h2>
         <h6>@Model.BlogNote</h6>

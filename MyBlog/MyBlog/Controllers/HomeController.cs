@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using MyBlog.Service.Interfaces;
 using MyBlog.Data;
 using MyBlog.Helpers;
+using MyBlog.ViewModels;
 //using MyBlog.Models;
 
 namespace MyBlog.Controllers
@@ -30,34 +31,39 @@ namespace MyBlog.Controllers
         public IActionResult ViewFullBlog(int id)
         {
             var blog = BlogService.GetById(id);
-            return View(blog);
+            var detailsViewModel = ModelConverter.ConvertToDetailsModel(blog);
+            return View(detailsViewModel);
         }
 
         public IActionResult Create()
         {
-            var blog = new Blog();
+            //var blog = new Blog();
+            var blog = new BlogCreateModel();
             return View(blog);
         }
 
         [HttpPost]
-        public IActionResult Create(Blog blog)
+        public IActionResult Create(BlogCreateModel blogCreate)
         {
             if (ModelState.IsValid)
             {
-                var converted=SectionConverter.ConvertToSection(blog);
+                
+                var blog = ModelConverter.ConvertFromCreateModel(blogCreate);
+                var converted = SectionConverter.ConvertToSection(blog);
                 BlogService.CreateBlog(converted);
                 return RedirectToAction("Index");
             }
             else
             {
-                return View(blog);
+                return View(blogCreate);
             }
         }
 
         public IActionResult ModifyOverview()
         {
             var blogs = BlogService.GetAll();
-            return View(blogs);
+            var modifyOverview = blogs.Select(x => ModelConverter.ConvertToModifyOverview(x)).ToList();
+            return View(modifyOverview);
         }
         public IActionResult Delete(int id)
         {
@@ -68,20 +74,23 @@ namespace MyBlog.Controllers
         public IActionResult Modify(int id)
         {
             var blog = BlogService.GetById(id);
-            return View(blog);
+            var blogModify = ModelConverter.ConvertToBlogModify(blog);
+            return View(blogModify);
         }
 
         [HttpPost]
-        public IActionResult Modify(Blog blog)
+        public IActionResult Modify(BlogModifyModel blogModify)
         {
             if (ModelState.IsValid)
             {
-                BlogService.UpdateBlog(blog);
+                var blog = ModelConverter.ConvertFromBlogModify(blogModify);
+                var blogConverted = SectionConverter.ConvertToSection(blog);
+                BlogService.UpdateBlog(blogConverted);
                 return RedirectToAction("ModifyOverview");
             }
             else
             {
-                return View(blog);
+                return View(blogModify);
             }
         }
 
