@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using MyBlog.Data;
 
 
+
 namespace MyBlog.Service
 {
     public class BlogService : IBlogService
@@ -32,6 +33,7 @@ namespace MyBlog.Service
 
         public void CreateBlog(Blog blog)
         {
+            
             BlogRepository.Add(blog);
         }
 

@@ -17,11 +17,6 @@
 
 
   <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
-
-
-  <ItemGroup>
     <ProjectReference Include="..\MyBlog.Service\MyBlog.Service.csproj" />
   </ItemGroup>
 

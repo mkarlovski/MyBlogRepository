@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 //using MyBlog.Models;
 using MyBlog.Service.Interfaces;
 using MyBlog.Data;
+using MyBlog.Helpers;
 //using MyBlog.Models;
 
 namespace MyBlog.Controllers
@@ -22,8 +23,9 @@ namespace MyBlog.Controllers
         public IActionResult Index(string section)
         {
             var blogs = BlogService.GetBySection(section);
-            //var blogs = BlogService.GetAll();
-            return View(blogs);
+            var overviewViewModel = blogs.Select(x => ModelConverter.ConvertToOverviewModel(x)).ToList();
+
+            return View(overviewViewModel);
         }
         public IActionResult ViewFullBlog(int id)
         {
@@ -42,7 +44,8 @@ namespace MyBlog.Controllers
         {
             if (ModelState.IsValid)
             {
-                BlogService.CreateBlog(blog);
+                var converted=SectionConverter.ConvertToSection(blog);
+                BlogService.CreateBlog(converted);
                 return RedirectToAction("Index");
             }
             else
