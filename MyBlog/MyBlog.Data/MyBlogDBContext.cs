@@ -13,5 +13,6 @@ namespace MyBlog.Data
         }
 
         public virtual DbSet<Blog> BlogsDB { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     }
 }
