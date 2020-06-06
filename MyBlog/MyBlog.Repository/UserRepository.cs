@@ -20,5 +20,11 @@ namespace MyBlog.Repository
         {
             return Context.Users.FirstOrDefault(x=>x.Username==username);
         }
+
+        public void Add(User newUser)
+        {
+            Context.Users.Add(newUser);
+            Context.SaveChanges();
+        }
     }
 }

@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
+using MyBlog.Data;
 //using Microsoft.Owin.Security.Cookies;
 using MyBlog.Repository.Interfaces;
+using MyBlog.Service.DtoModels;
 using MyBlog.Service.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -46,6 +48,30 @@ namespace MyBlog.Service
         public async Task SignOutAsync(HttpContext httpContext)
         {
             await httpContext.SignOutAsync();
+        }
+
+        public SignUpResponse SignUp(string username, string password)
+        {
+            var user = UserRepository.GetByUsername(username);
+            var response = new SignUpResponse();
+            if (user == null)
+            {
+                var newUser = new User
+                {
+                    Username=username,
+                    Password=password
+                };
+                UserRepository.Add(newUser);
+                response.IsSuccessful = true;
+            }
+            else
+            {
+                response.IsSuccessful = false;
+                response.Message = "User with that username already exists";
+            }
+
+            return response;
+
         }
     }
 }

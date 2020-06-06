@@ -36,15 +36,34 @@
                     @*<li class="nav-item">
             <a class="nav-link" asp-controller="Info" asp-action="AboutUs">About Us</a>
         </li>*@
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Home" asp-action="ModifyOverview">Modify Blogs</a>
-                    </li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="ModifyOverview">Modify Blogs</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">@User.Identity.Name</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Auth" asp-action="SignOut">Sign Out</a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Auth" asp-action="SignIn">Sign In</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Auth" asp-action="SignUp">Sign Up</a>
+                        </li>
+                    }
+
                     <li class="nav-item">
                         <a class="nav-link" asp-controller="Info" asp-action="ContactMe">Contact Us</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" asp-controller="Home" asp-action="Create">Create Post</a>
-                    </li>
+                    @*<li class="nav-item">
+            <a class="nav-link" asp-controller="Home" asp-action="Create">Create Post</a>
+        </li>*@
 
                 </ul>
             </div>

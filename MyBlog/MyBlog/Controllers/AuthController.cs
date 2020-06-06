@@ -57,7 +57,17 @@ namespace MyBlog.Controllers
         {
             if (ModelState.IsValid)
             {
-                return RedirectToAction("SignIn");
+                var response = AuthService.SignUp(model.Username, model.Password);
+                if (response.IsSuccessful)
+                {
+                    return RedirectToAction("SignIn");
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, response.Message);
+                    return View(model);
+                }
+                
             }
             return View(model);
         }

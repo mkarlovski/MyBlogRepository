@@ -9,10 +9,12 @@ using MyBlog.Service.Interfaces;
 using MyBlog.Data;
 using MyBlog.Helpers;
 using MyBlog.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 //using MyBlog.Models;
 
 namespace MyBlog.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         public IBlogService BlogService { get; set; }
@@ -21,6 +23,7 @@ namespace MyBlog.Controllers
         {
             BlogService = blogService;
         }
+        [AllowAnonymous]
         public IActionResult Index(string section)
         {
             var blogs = BlogService.GetBySection(section);
@@ -28,6 +31,7 @@ namespace MyBlog.Controllers
 
             return View(overviewViewModel);
         }
+        [AllowAnonymous]
         public IActionResult ViewFullBlog(int id)
         {
             var blog = BlogService.GetById(id);
