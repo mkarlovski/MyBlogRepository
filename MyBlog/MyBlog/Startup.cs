@@ -10,7 +10,7 @@ using MyBlog.Repository.Interfaces;
 using MyBlog.Service;
 using MyBlog.Service.Interfaces;
 using MyBlog.Data;
-
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace MyBlog
 {
@@ -36,7 +36,19 @@ namespace MyBlog
             services.AddDbContext<MyBlogDBContext>(options => options.UseSqlServer("Data Source=.\\SQLEXPRESS; Initial Catalog=MyBlogDB; Integrated Security=true"));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            }).AddCookie(options => 
+            {
+                options.LoginPath = "/auth/signin";
+            });
+
             services.AddTransient<IBlogService,BlogService>();
+            services.AddTransient<IAuthService, AuthService>();
+            services.AddTransient<IUserRepository, UserRepository>();
             //services.AddSingleton<IBlogRepository,BlogRepository>();
             //services.AddTransient<IBlogRepository, BlogSQLRepository>();
             services.AddTransient<IBlogRepository, BlogRepositoryEF>();
@@ -59,6 +71,8 @@ namespace MyBlog
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+
+            app.UseAuthentication();
 
             app.UseMvc(routes =>
             {
