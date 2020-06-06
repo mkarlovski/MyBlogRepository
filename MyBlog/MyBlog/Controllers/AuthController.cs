@@ -21,6 +21,7 @@ namespace MyBlog.Controllers
             return View(signInModel);
         }
 
+        [HttpPost]
         public async Task<IActionResult> SignIn(SignInModel model)
         {
             if (ModelState.IsValid)
@@ -32,10 +33,34 @@ namespace MyBlog.Controllers
                 }
                 else
                 {
-
+                    ModelState.AddModelError(string.Empty, "Username or password is incorrect");
+                    return View(model);
                 }
             }
             return View(model);
         }
+
+        public async Task<IActionResult> SignOut()
+        {
+            await AuthService.SignOutAsync(HttpContext);
+            return RedirectToAction("Index", "Home");
+        }
+
+        public IActionResult SignUp()
+        {
+            var signUpModel = new SignUpModel();
+            return View(signUpModel);
+        }
+
+        [HttpPost]
+        public IActionResult SignUp(SignUpModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("SignIn");
+            }
+            return View(model);
+        }
+
     }
 }

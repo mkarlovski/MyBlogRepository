@@ -43,6 +43,9 @@ namespace MyBlog.Service
             }
         }
 
-
+        public async Task SignOutAsync(HttpContext httpContext)
+        {
+            await httpContext.SignOutAsync();
+        }
     }
 }

@@ -9,5 +9,6 @@ namespace MyBlog.Service.Interfaces
     public interface IAuthService
     {
         Task<bool> SignInAsync(string username, string password,HttpContext httpContext);
+        Task SignOutAsync(HttpContext httpContext);
     }
 }
