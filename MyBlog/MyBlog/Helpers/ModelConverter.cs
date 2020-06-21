@@ -23,6 +23,16 @@ namespace MyBlog.Helpers
             };
         }
 
+        public static ModifyUserOverview ConvertToUserModifyOverviewModel(User x)
+        {
+            return new ModifyUserOverview
+            {
+                Id=x.Id,
+                Username=x.Username,
+                IsAdmin=x.IsAdmin
+            };
+        }
+
         public static BlogDetailsModel ConvertToDetailsModel(Blog blog)
         {
             return new BlogDetailsModel
@@ -34,6 +44,16 @@ namespace MyBlog.Helpers
                 Section = blog.Section,
                 DaysCreated = DateTime.Now.Subtract(blog.DateCreated.Value).Days,
                 FullDescription=blog.FullDescription
+            };
+        }
+
+        public static UserModifyModel ConvertToUserModifyModel(User user)
+        {
+            return new UserModifyModel
+            {
+                Id=user.Id,
+                Username=user.Username,
+                IsAdmin=user.IsAdmin
             };
         }
 

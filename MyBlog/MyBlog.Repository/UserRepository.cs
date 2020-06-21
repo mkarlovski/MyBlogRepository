@@ -26,5 +26,26 @@ namespace MyBlog.Repository
             Context.Users.Add(newUser);
             Context.SaveChanges();
         }
+
+        public List<User> GetAll()
+        {
+            return Context.Users.ToList();
+        }
+
+        public void Delete(int id)
+        {
+            var user = new User
+            {
+                Id = id
+            };
+
+            Context.Users.Remove(user);
+            Context.SaveChanges();
+        }
+
+        public User GetById(int id)
+        {
+            return Context.Users.FirstOrDefault(x => x.Id == id);
+        }
     }
 }

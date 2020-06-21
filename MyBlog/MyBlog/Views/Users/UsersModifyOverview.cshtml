@@ -1,0 +1,31 @@
+﻿@addTagHelper *,Microsoft.AspNetCore.Mvc.TagHelpers
+@model List<MyBlog.ViewModels.ModifyUserOverview>;
+@{ 
+    Layout = "_Layout";
+    ViewBag.Title = "ModifyUserOverview";
+}
+
+<h3> Modify Users </h3>
+
+<table class="table" style="margin:20px;">
+    <thead>
+        <tr>
+            <td>User</td>
+            <td>Admin Status</td>
+            <td>Action</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in @Model)
+        {
+            <tr>
+                <td>@user.Username</td>
+                <td><input type="checkbox" disabled="disabled" checked="@user.IsAdmin" asp-for="@user.IsAdmin"  /> </td>
+                <td>Modify |  Change Password | <a asp-controller="Users" asp-action="Delete" asp-route-id="@user.Id">Delete</a> </td>
+            </tr>
+        }
+
+
+
+    </tbody>
+</table>

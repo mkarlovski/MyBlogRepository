@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace MyBlog.Data
+namespace MyBlog.ViewModels
 {
-    public class User
+    public class ModifyUserOverview
     {
         public int Id { get; set; }
-        [Required]
+       
         public string Username { get; set; }
-        [Required]
-        public string Password { get; set; }
+
         public bool IsAdmin { get; set; }
     }
 }

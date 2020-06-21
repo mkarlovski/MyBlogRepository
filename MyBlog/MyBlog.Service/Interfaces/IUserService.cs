@@ -3,12 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MyBlog.Repository.Interfaces
+namespace MyBlog.Service.Interfaces
 {
-    public interface IUserRepository
+    public interface IUserService
     {
-        User GetByUsername(string username);
-        void Add(User newUser);
         List<User> GetAll();
         void Delete(int id);
         User GetById(int id);
