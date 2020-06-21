@@ -57,6 +57,17 @@ namespace MyBlog.Helpers
             };
         }
 
+        public static User ConvertFromUserModifyModel(UserModifyModel model)
+        {
+            return new User
+            {
+                Id = model.Id,
+                Username=model.Username,
+                IsAdmin=model.IsAdmin
+            };
+
+        }
+
         public static Blog ConvertFromCreateModel(BlogCreateModel blogCreate)
         {
             return new Blog

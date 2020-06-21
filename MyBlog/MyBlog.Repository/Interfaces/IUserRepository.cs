@@ -12,5 +12,6 @@ namespace MyBlog.Repository.Interfaces
         List<User> GetAll();
         void Delete(int id);
         User GetById(int id);
+        void Update(User dbUser);
     }
 }

@@ -21,7 +21,7 @@
             <tr>
                 <td>@user.Username</td>
                 <td><input type="checkbox" disabled="disabled" checked="@user.IsAdmin" asp-for="@user.IsAdmin"  /> </td>
-                <td>Modify |  Change Password | <a asp-controller="Users" asp-action="Delete" asp-route-id="@user.Id">Delete</a> </td>
+                <td><a asp-controller="Users" asp-action="Modify" asp-route-id="@user.Id">Modify</a> |  Change Password | <a asp-controller="Users" asp-action="Delete" asp-route-id="@user.Id">Delete</a> </td>
             </tr>
         }
 

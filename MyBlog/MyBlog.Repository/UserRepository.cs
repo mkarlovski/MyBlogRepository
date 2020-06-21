@@ -47,5 +47,11 @@ namespace MyBlog.Repository
         {
             return Context.Users.FirstOrDefault(x => x.Id == id);
         }
+
+        public void Update(User dbUser)
+        {
+            Context.Users.Update(dbUser);
+            Context.SaveChanges();
+        }
     }
 }
